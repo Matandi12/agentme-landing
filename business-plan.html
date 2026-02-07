@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תוכנית עסקית - AgentMe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #7c3aed;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+            color: #00d4ff;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        th {
+            background: rgba(124, 58, 237, 0.3);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .highlight {
+            background: rgba(124, 58, 237, 0.2);
+            font-weight: 600;
+        }
+
+        ul {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        ul li {
+            padding: 10px 0;
+            padding-right: 25px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        ul li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: #00d4ff;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #7c3aed;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #00d4ff;
+        }
+
+        .profit {
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        .warning {
+            background: rgba(255, 200, 0, 0.1);
+            border: 1px solid rgba(255, 200, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .names-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .name-option {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .name-option.recommended {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        .name-option h4 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .badge {
+            background: #7c3aed;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            table { font-size: 0.9rem; }
+            th, td { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← חזרה לדף הנחיתה</a>
+        
+        <h1>📋 תוכנית עסקית - AgentMe</h1>
+        <p class="subtitle">שירות סוכני AI אישיים בוואטסאפ</p>
+
+        <h2>📌 סיכום מנהלים</h2>
+        <p>שירות התקנה וניהול של סוכני AI אישיים בוואטסאפ - עוזרים חכמים שעובדים 24/7, עונים בשם הלקוח, מנהלים משימות, ועוזרים בכל תחום.</p>
+
+        <h2>💰 ניתוח עלויות (לכל לקוח)</h2>
+
+        <h3>עלויות תשתית חודשיות:</h3>
+        <table>
+            <tr>
+                <th>רכיב</th>
+                <th>עלות חודשית</th>
+                <th>הערות</th>
+            </tr>
+            <tr>
+                <td>EC2 t3.small</td>
+                <td>$15-20</td>
+                <td>2 vCPU, 2GB RAM - מספיק לסוכן אחד</td>
+            </tr>
+            <tr>
+                <td>EC2 t3.micro</td>
+                <td>$8-10</td>
+                <td>1 vCPU, 1GB RAM - אפשרי אבל צפוף</td>
+            </tr>
+            <tr>
+                <td>Storage (EBS 20GB)</td>
+                <td>$2</td>
+                <td></td>
+            </tr>
+            <tr class="highlight">
+                <td><strong>סה"כ תשתית</strong></td>
+                <td><strong>$10-22</strong></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <h3>עלויות API חודשיות (תלוי שימוש):</h3>
+        <table>
+            <tr>
+                <th>רכיב</th>
+                <th>שימוש קל</th>
+                <th>שימוש בינוני</th>
+                <th>שימוש כבד</th>
+            </tr>
+            <tr>
+                <td>Anthropic Claude</td>
+                <td>$10</td>
+                <td>$30</td>
+                <td>$80+</td>
+            </tr>
+            <tr>
+                <td>ElevenLabs TTS</td>
+                <td>$5</td>
+                <td>$11</td>
+                <td>$22</td>
+            </tr>
+            <tr>
+                <td>OpenAI Whisper</td>
+                <td>$2</td>
+                <td>$5</td>
+                <td>$15</td>
+            </tr>
+            <tr class="highlight">
+                <td><strong>סה"כ API</strong></td>
+                <td><strong>$17</strong></td>
+                <td><strong>$46</strong></td>
+                <td><strong>$117</strong></td>
+            </tr>
+        </table>
+
+        <h3>עלויות WhatsApp:</h3>
+        <table>
+            <tr>
+                <th>אפשרות</th>
+                <th>עלות</th>
+                <th>יתרונות</th>
+                <th>חסרונות</th>
+            </tr>
+            <tr>
+                <td>Baileys (לא רשמי)</td>
+                <td>$0</td>
+                <td>חינם</td>
+                <td>סיכון לחסימה</td>
+            </tr>
+            <tr>
+                <td>WhatsApp Business API</td>
+                <td>$15-50/חודש</td>
+                <td>רשמי, אמין</td>
+                <td>יקר יותר</td>
+            </tr>
+        </table>
+
+        <h3>סיכום עלויות לכל לקוח:</h3>
+        <table>
+            <tr>
+                <th>פרופיל</th>
+                <th>עלות חודשית</th>
+            </tr>
+            <tr>
+                <td>לקוח פרטי (שימוש קל)</td>
+                <td>$30-40</td>
+            </tr>
+            <tr>
+                <td>לקוח פרטי (שימוש בינוני)</td>
+                <td>$50-70</td>
+            </tr>
+            <tr>
+                <td>לקוח עסקי (שימוש כבד)</td>
+                <td>$80-150</td>
+            </tr>
+        </table>
+
+        <h2>📦 הגדרת חבילות</h2>
+
+        <div class="card">
+            <h4>🏠 חבילת "אישי" - לאדם הפרטי</h4>
+            <p class="price">₪299/חודש</p>
+            <ul>
+                <li>עוזר AI אישי בוואטסאפ 24/7</li>
+                <li>ניהול יומן ותזכורות</li>
+                <li>מענה להודעות בסגנון שלך</li>
+                <li>חיפוש מידע ומחקר</li>
+                <li>תמלול הודעות קוליות</li>
+                <li>המלצות ותכנון (מסעדות, טיולים, קניות)</li>
+                <li>עזרה בכתיבה (מיילים, הודעות)</li>
+                <li>תזכורות חכמות (ימי הולדת, תשלומים)</li>
+            </ul>
+            <p><strong>מגבלות:</strong> עד 500 הודעות ביום, ללא אינטגרציות עסקיות, תמיכה במייל בלבד</p>
+        </div>
+
+        <div class="card" style="border-color: #7c3aed;">
+            <h4>🏢 חבילת "עסקי" - לבעלי עסקים</h4>
+            <p class="price">₪699/חודש</p>
+            <p><strong>כל מה שבחבילת אישי, ובנוסף:</strong></p>
+            <ul>
+                <li>מענה ללקוחות בשם העסק</li>
+                <li>ניהול לידים ו-CRM בסיסי</li>
+                <li>שליחת הצעות מחיר</li>
+                <li>תיאום פגישות אוטומטי</li>
+                <li>מעקב משימות ופרויקטים</li>
+                <li>דוחות שבועיים</li>
+                <li>אינטגרציה עם Google Calendar</li>
+                <li>אינטגרציה עם Google Sheets</li>
+                <li>התאמה אישית של הסוכן לעסק</li>
+            </ul>
+            <p><strong>מגבלות:</strong> עד 2000 הודעות ביום, תמיכה בוואטסאפ + מייל</p>
+        </div>
+
+        <div class="card">
+            <h4>🚀 חבילת "פרימיום" - לעסקים גדולים</h4>
+            <p class="price">₪1,499+/חודש</p>
+            <p><strong>כל מה שבחבילת עסקי, ובנוסף:</strong></p>
+            <ul>
+                <li>ללא הגבלת הודעות</li>
+                <li>מספר סוכנים (למחלקות שונות)</li>
+                <li>אינטגרציות מותאמות אישית</li>
+                <li>API לחיבור למערכות קיימות</li>
+                <li>דוחות מתקדמים</li>
+                <li>מנהל לקוח ייעודי</li>
+                <li>SLA עם זמני תגובה מובטחים</li>
+                <li>הדרכה אישית</li>
+            </ul>
+        </div>
+
+        <h2>📊 חישוב רווחיות</h2>
+        <table>
+            <tr>
+                <th>חבילה</th>
+                <th>הכנסה</th>
+                <th>עלות</th>
+                <th>רווח</th>
+            </tr>
+            <tr>
+                <td>אישי</td>
+                <td>₪299</td>
+                <td>~₪130</td>
+                <td class="profit">₪169 (56%)</td>
+            </tr>
+            <tr>
+                <td>עסקי</td>
+                <td>₪699</td>
+                <td>~₪260</td>
+                <td class="profit">₪439 (63%)</td>
+            </tr>
+            <tr>
+                <td>פרימיום</td>
+                <td>₪1,499</td>
+                <td>~₪445</td>
+                <td class="profit">₪1,054 (70%)</td>
+            </tr>
+        </table>
+
+        <h2>🎯 קהל יעד</h2>
+        
+        <h3>לחבילת אישי:</h3>
+        <ul>
+            <li>אנשים עסוקים שרוצים לחסוך זמן</li>
+            <li>הורים שצריכים עזרה בארגון</li>
+            <li>אנשים שמקבלים הרבה הודעות</li>
+            <li>כל מי שרוצה עוזר אישי אבל לא יכול להרשות לעצמו אדם</li>
+        </ul>
+
+        <h3>לחבילת עסקי:</h3>
+        <ul>
+            <li>עצמאיים ופרילנסרים</li>
+            <li>בעלי עסקים קטנים (1-10 עובדים)</li>
+            <li>סוכני נדל"ן, ביטוח, מכירות</li>
+            <li>מאמנים, יועצים, מטפלים</li>
+            <li>חנויות אונליין</li>
+        </ul>
+
+        <h3>לחבילת פרימיום:</h3>
+        <ul>
+            <li>חברות בינוניות</li>
+            <li>רשתות עם מספר סניפים</li>
+            <li>עסקים עם נפח לקוחות גבוה</li>
+        </ul>
+
+        <h2>🏷️ הצעות שמות למוצר</h2>
+        
+        <div class="names-grid">
+            <div class="name-option recommended">
+                <span class="badge">מומלץ</span>
+                <h4>AgentMe</h4>
+                <p>הסוכן שלי</p>
+            </div>
+            <div class="name-option recommended">
+                <span class="badge">מומלץ</span>
+                <h4>סוכן.AI</h4>
+                <p>פשוט וברור</p>
+            </div>
+            <div class="name-option">
+                <h4>BrainMate</h4>
+                <p>החבר החכם</p>
+            </div>
+            <div class="name-option">
+                <h4>MindAgent</h4>
+                <p>סוכן מוח</p>
+            </div>
+            <div class="name-option">
+                <h4>MyClone</h4>
+                <p>העתק שלי</p>
+            </div>
+            <div class="name-option">
+                <h4>AIגנט</h4>
+                <p>שילוב עברית-אנגלית</p>
+            </div>
+        </div>
+
+        <h2>🛠️ תהליך התקנה (לכל לקוח)</h2>
+        <table>
+            <tr>
+                <th>שלב</th>
+                <th>זמן</th>
+                <th>פירוט</th>
+            </tr>
+            <tr>
+                <td>1. פגישת היכרות</td>
+                <td>30 דק</td>
+                <td>הבנת הצרכים</td>
+            </tr>
+            <tr>
+                <td>2. הקמת תשתית</td>
+                <td>2-3 שעות</td>
+                <td>יצירת EC2, התקנת OpenClaw, חיבור WhatsApp</td>
+            </tr>
+            <tr>
+                <td>3. התאמה אישית</td>
+                <td>1-2 שעות</td>
+                <td>הגדרת אופי, אינטגרציות, הדרכה</td>
+            </tr>
+            <tr>
+                <td>4. תקופת הרצה</td>
+                <td>שבוע</td>
+                <td>ליווי צמוד, תיקונים והתאמות</td>
+            </tr>
+        </table>
+        <p><strong>זמן הקמה כולל:</strong> 1-3 ימי עבודה</p>
+
+        <h2>📈 תחזית צמיחה</h2>
+        
+        <h3>שנה ראשונה:</h3>
+        <ul>
+            <li>חודש 1-3: 5-10 לקוחות (בטא, מחיר מופחת)</li>
+            <li>חודש 4-6: 15-25 לקוחות</li>
+            <li>חודש 7-12: 40-60 לקוחות</li>
+        </ul>
+
+        <div class="card">
+            <h4>הכנסה צפויה (שנה ראשונה)</h4>
+            <ul>
+                <li>ממוצע ₪450/לקוח/חודש</li>
+                <li>50 לקוחות בסוף השנה</li>
+                <li><strong>הכנסה חודשית: ₪22,500</strong></li>
+                <li><strong>הכנסה שנתית: ~₪150,000</strong></li>
+            </ul>
+        </div>
+
+        <h2>⚠️ סיכונים ופתרונות</h2>
+        <table>
+            <tr>
+                <th>סיכון</th>
+                <th>פתרון</th>
+            </tr>
+            <tr>
+                <td>חסימת WhatsApp</td>
+                <td>שימוש ב-Business API הרשמי</td>
+            </tr>
+            <tr>
+                <td>עלויות API גבוהות</td>
+                <td>הגדרת מגבלות שימוש, מודלים זולים יותר</td>
+            </tr>
+            <tr>
+                <td>תחרות</td>
+                <td>התמקדות בשירות אישי ובעברית</td>
+            </tr>
+            <tr>
+                <td>תקלות טכניות</td>
+                <td>ניטור 24/7, גיבויים</td>
+            </tr>
+        </table>
+
+        <h2>🚀 שלבים הבאים</h2>
+        <ul>
+            <li>✅ תוכנית עסקית (הקובץ הזה)</li>
+            <li>⬜ בחירת שם סופי</li>
+            <li>⬜ דף נחיתה</li>
+            <li>⬜ 3-5 לקוחות בטא (חינם/מחיר מופחת)</li>
+            <li>⬜ שיפור לפי פידבק</li>
+            <li>⬜ השקה רשמית</li>
+            <li>⬜ שיווק (פייסבוק, אינסטגרם, לינקדאין)</li>
+        </ul>
+
+        <br><br>
+        <p style="text-align: center; color: rgba(255,255,255,0.5);">נוצר על ידי לוגן 🔥 | 7 בפברואר 2026</p>
+    </div>
+</body>
+</html>
